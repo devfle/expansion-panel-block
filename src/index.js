@@ -32,12 +32,12 @@ import save from './save';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'create-block/expansion-panel', {
+registerBlockType('create-block/expansion-panel', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __( 'Expansion Panel', 'expansion-panel' ),
+	title: __('Expansion Panel', 'expansion-panel'),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -68,6 +68,22 @@ registerBlockType( 'create-block/expansion-panel', {
 		html: false,
 	},
 
+	keywords: [
+		__('expansion'),
+		__('panel'),
+		__('spoiler'),
+		__('hide'),
+		__('show'),
+	],
+
+	attributes: {
+		content: {
+			type: 'string',
+			source: 'html',
+			selector: 'p',
+		}
+	},
+
 	/**
 	 * @see ./edit.js
 	 */
@@ -77,4 +93,4 @@ registerBlockType( 'create-block/expansion-panel', {
 	 * @see ./save.js
 	 */
 	save,
-} );
+});

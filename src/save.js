@@ -16,11 +16,9 @@ import { __ } from '@wordpress/i18n';
  */
 export default function save() {
 	return (
-		<p>
-			{ __(
-				'Expansion Panel – hello from the saved content!',
-				'expansion-panel'
-			) }
-		</p>
+		<div className="devfle-expansion-panel">
+			<div className="devfle-expansion-panel__title">Click to expand!</div>
+			<div className="devfle-expansion-panel__content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</div>
+		</div>
 	);
 }

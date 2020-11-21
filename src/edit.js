@@ -5,6 +5,9 @@
  */
 import { __ } from '@wordpress/i18n';
 
+import { InnerBlocks } from '@wordpress/block-editor';
+import { RichText, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
+
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
  * Those files can contain any CSS code that gets applied to the editor.
@@ -24,13 +27,17 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit( { className } ) {
+export default function Edit({ className }) {
 	return (
-		<p className={ className }>
-			{ __(
-				'Expansion Panel – hello from the editor!',
-				'expansion-panel'
-			) }
-		</p>
+		<div className="devfle-expansion-panel">
+			<div className="devfle-expansion-panel__title">
+				<RichText
+					tagName="p"
+					placeholder={__('Expansion Panel Title')} />
+			</div>
+			<div className="devfle-expansion-panel__content">
+				<InnerBlocks />
+			</div>
+		</div>
 	);
 }

@@ -4,6 +4,15 @@
  * Replace them with your own styles or remove the file completely.
  */
 
-.wp-block-create-block-expansion-panel {
-	border: 1px dotted #f00;
+.devfle-expansion-panel {
+	&__title {
+	  &:hover {
+		cursor: text;
+	  }
+	}
+  
+	&__content {
+	  padding: 0.5em;
+	  min-height: 100px;
+	}
 }
