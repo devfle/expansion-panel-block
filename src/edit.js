@@ -4,9 +4,8 @@
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
-
-import { InnerBlocks } from '@wordpress/block-editor';
-import { RichText, AlignmentToolbar, BlockControls } from '@wordpress/block-editor';
+import { RichText, InnerBlocks, AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
+import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl } from '@wordpress/components';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -27,13 +26,40 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit({ className }) {
+export default function Edit({ attributes, setAttributes }) {
+	const changeAlignment = newAlignment => {
+		setAttributes( { alignment: newAlignment === undefined ? 'center' : newAlignment } );
+	}
+
 	return (
-		<div className="devfle-expansion-panel">
+		<div style={ {borderRadius: attributes.borderRadius} } className="devfle-expansion-panel">
 			<div className="devfle-expansion-panel__title">
+				{
+					<BlockControls>
+						<AlignmentToolbar value={ attributes.alignment } onChange={ changeAlignment } />
+					</BlockControls>
+				}
+				{
+					<InspectorControls>
+						<PanelBody initialOpen={ false } title="Border Settings">
+							<ToggleControl checked={ attributes.border } label="Display Border" onChange={ border => setAttributes({ border }) } ></ToggleControl>
+							<RangeControl value={attributes.borderRadius } onChange={ borderRadius => setAttributes({ borderRadius }) } min={ 0 } max={ 30 }  label={ __('Border Radius (px)') }></RangeControl>
+						</PanelBody>
+						<PanelBody title={ __('Block Spacing') }>
+							<UnitControl label={ __('Block Margin') }></UnitControl>
+							<PanelRow>
+								<UnitControl label={ __('Title Padding') }></UnitControl>
+								<UnitControl label={ __('Content Padding') }></UnitControl>
+							</PanelRow>
+						</PanelBody>
+					</InspectorControls>
+				}
 				<RichText
+					style={ { textAlign: attributes.alignment } }
 					tagName="p"
-					placeholder={__('Expansion Panel Title')} />
+					value={attributes.content}
+					onChange={(content) => setAttributes({ content })}
+					placeholder={__('Your Title')} />
 			</div>
 			<div className="devfle-expansion-panel__content">
 				<InnerBlocks />

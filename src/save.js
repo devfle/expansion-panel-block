@@ -4,6 +4,7 @@
  * @see https://developer.wordpress.org/block-editor/packages/packages-i18n/
  */
 import { __ } from '@wordpress/i18n';
+import { RichText, InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * The save function defines the way in which the different attributes should
@@ -14,11 +15,15 @@ import { __ } from '@wordpress/i18n';
  *
  * @return {WPElement} Element to render.
  */
-export default function save() {
+export default function save({ attributes }) {
 	return (
 		<div className="devfle-expansion-panel">
-			<div className="devfle-expansion-panel__title">Click to expand!</div>
-			<div className="devfle-expansion-panel__content">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et</div>
+			<div className="devfle-expansion-panel__title">
+				<RichText.Content className={ `devfle-expansion-panel--${ attributes.alignment }` } tagName="p" value={attributes.content} />
+			</div>
+			<div className="devfle-expansion-panel__content">
+				<InnerBlocks.Content />
+			</div>
 		</div>
 	);
 }

@@ -11,10 +11,11 @@
 	margin: 1em 0;
   
 	&__title {
-	  text-align: center;
 	  padding: 0.5em;
-	  border-bottom: 1px solid #d0d0d0;
+	  border-bottom: none;
 	  user-select: none;
+	  word-wrap: break-word;
+	  box-sizing: border-box;
   
 	  &:hover {
 		cursor: pointer;
@@ -26,8 +27,38 @@
 	}
   
 	&__content {
-	  max-height: 0px;
 	  opacity: 0;
 	  visibility: hidden;
+	  padding: 0 8px;
+	  transition: height .5s, opacity .25s, visibility .25s, padding .25s .25s;
+	  transition-timing-function: ease-in-out;
+	}
+
+	&--open {
+		.devfle-expansion-panel__title {
+			border-bottom: 1px solid #d0d0d0;
+		}
+
+		.devfle-expansion-panel__content {
+			transition: height .5s, opacity .25s .25s, visibility .25s .25s, padding .25s .25s;
+			transition-timing-function: ease-in-out;
+			opacity: 1;
+			padding: 8px;
+			box-sizing: border-box;
+			visibility: visible;
+		}
+	}
+
+	/* Settings text align left just as fallback */
+	&--left {
+		text-align: left;
+	}
+
+	&--center {
+		text-align: center;
+	}
+
+	&--right {
+		text-align: right;
 	}
   }

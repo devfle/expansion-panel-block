@@ -58,7 +58,7 @@ registerBlockType('create-block/expansion-panel', {
 	 * An icon property should be specified to make it easier to identify a block.
 	 * These can be any of WordPress’ Dashicons, or a custom svg element.
 	 */
-	icon: 'smiley',
+	icon: 'admin-page',
 
 	/**
 	 * Optional block extended support features.
@@ -81,6 +81,18 @@ registerBlockType('create-block/expansion-panel', {
 			type: 'string',
 			source: 'html',
 			selector: 'p',
+		},
+		alignment: {
+			type: 'string',
+			default: 'center'
+		},
+		border: {
+			type: 'boolean',
+			default: false,
+		},
+		borderRadius: {
+			type: 'number',
+			default: 4,
 		}
 	},
 
@@ -93,4 +105,11 @@ registerBlockType('create-block/expansion-panel', {
 	 * @see ./save.js
 	 */
 	save,
+});
+
+const BLOCK_STYLES = [];
+
+wp.blocks.registerBlockStyle( 'create-block/expansion-panel', {
+	name: 'expansion-panel--without-border',
+	label: 'Border Bottom'
 });
