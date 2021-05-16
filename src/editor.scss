@@ -6,6 +6,12 @@
 
 .devfle-expansion-panel {
 	&__title {
+		border-bottom: 1px solid;
+
+		&--border-false {
+			border-bottom: none;
+		}
+		
 	  &:hover {
 		cursor: text;
 	  }
@@ -17,5 +23,19 @@
 	  visibility: visible;
 	  opacity: 1;
 	  max-height: 100%;
+	}
+}
+
+.block-editor-block-inspector {
+	.unitcontrol--space-left {
+		margin: 0 0 0 8px !important;
+	}
+	
+	.unitcontrol--space-right {
+		margin: 0 8px 0 0 !important;
+	}
+
+	.devfle-radio-group {
+		margin-bottom: 24px;
 	}
 }

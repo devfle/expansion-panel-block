@@ -60,6 +60,13 @@ function create_block_expansion_panel_block_init() {
 }
 add_action( 'init', 'create_block_expansion_panel_block_init' );
 
+add_action( 'init', function() {
+	register_block_style('create-block/expansion-panel', [
+		'name' => 'dashed',
+		'label' => 'Test',		
+	]);
+} );
+
 add_action('wp_enqueue_scripts', function() {
 	$SCRIPT_NAME = 'ep-frontend';
 	$SCRIPT_PATH = 'build/frontend.js';

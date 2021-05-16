@@ -16,10 +16,13 @@ import { RichText, InnerBlocks } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
+	const { titleIcon, titleIconAnimation, border, borderColor, borderRadius, borderThick, alignment, titleFontSize, titleBorder, content} = attributes;
+
 	return (
-		<div className="devfle-expansion-panel">
-			<div className="devfle-expansion-panel__title">
-				<RichText.Content className={ `devfle-expansion-panel--${ attributes.alignment }` } tagName="p" value={attributes.content} />
+		<div style={ { borderRadius, borderColor, borderWidth: border === true ? `${borderThick}px` : '1px' } } className="devfle-expansion-panel">
+			<div style={ { borderColor } } className={`devfle-expansion-panel__title devfle-expansion-panel__title--border-${titleBorder} devfle-expansion-panel--icon-${titleIcon}`}>
+				<div className={ `devfle-expansion-panel__icon devfle-expansion-panel__icon--animation-${titleIconAnimation}` }></div>
+				<RichText.Content style={ { fontSize: titleFontSize } } className={ `devfle-expansion-panel--${ alignment }` } tagName="p" value={content} />
 			</div>
 			<div className="devfle-expansion-panel__content">
 				<InnerBlocks.Content />

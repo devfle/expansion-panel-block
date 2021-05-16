@@ -44,7 +44,7 @@ registerBlockType('create-block/expansion-panel', {
 	 * It will be shown in the Block Tab in the Settings Sidebar.
 	 */
 	description: __(
-		'Example block written with ESNext standard and JSX support – build step required.',
+		'Hide your content inside a expansion panel. The panel opens on click.',
 		'expansion-panel'
 	),
 
@@ -52,7 +52,7 @@ registerBlockType('create-block/expansion-panel', {
 	 * Blocks are grouped into categories to help users browse and discover them.
 	 * The categories provided by core are `common`, `embed`, `formatting`, `layout` and `widgets`.
 	 */
-	category: 'widgets',
+	category: 'design',
 
 	/**
 	 * An icon property should be specified to make it easier to identify a block.
@@ -66,6 +66,9 @@ registerBlockType('create-block/expansion-panel', {
 	supports: {
 		// Removes support for an HTML mode.
 		html: false,
+		spacing: {
+			padding: true,
+		},
 	},
 
 	keywords: [
@@ -88,11 +91,35 @@ registerBlockType('create-block/expansion-panel', {
 		},
 		border: {
 			type: 'boolean',
-			default: false,
+			default: true,
 		},
 		borderRadius: {
 			type: 'number',
 			default: 4,
+		},
+		borderColor: {
+			type: 'string',
+			default: '#333',
+		},
+		titleFontSize: {
+			type: 'number',
+			default: 16,
+		},
+		titleIcon: {
+			type: 'string',
+			default: 'left',
+		},
+		titleIconAnimation: {
+			type: "boolean",
+			default: true,
+		},
+		titleBorder: {
+			type: 'boolean',
+			default: true,
+		},
+		borderThick: {
+			type: 'number',
+			default: 1,
 		}
 	},
 
@@ -107,9 +134,11 @@ registerBlockType('create-block/expansion-panel', {
 	save,
 });
 
-const BLOCK_STYLES = [];
+/*const blockStyles = ['dashed', 'dotted'];
 
-wp.blocks.registerBlockStyle( 'create-block/expansion-panel', {
-	name: 'expansion-panel--without-border',
-	label: 'Border Bottom'
-});
+for (const blockStyle of blockStyles) {
+	wp.blocks.registerBlockStyle( 'create-block/expansion-panel', {
+		name: `expansion-panel--${blockStyle}`,
+		label: __(`${blockStyle} Border`),
+	});	
+}*/
