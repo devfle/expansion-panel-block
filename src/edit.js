@@ -5,7 +5,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { RichText, InnerBlocks, AlignmentToolbar, BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, PanelRow, ToggleControl, RangeControl, __experimentalUnitControl as UnitControl, ColorPalette, FontSizePicker, __experimentalRadioGroup as RadioGroup, __experimentalRadio as Radio } from '@wordpress/components';
+import { PanelBody, ToggleControl, RangeControl, ColorPalette, FontSizePicker, __experimentalRadioGroup as RadioGroup, __experimentalRadio as Radio } from '@wordpress/components';
 import { useRef, useEffect } from 'react';
 
 /**
@@ -29,7 +29,18 @@ import './editor.scss';
  */
 export default function Edit({ attributes, setAttributes }) {
 
-	const { titleIcon, titleIconAnimation, border, borderColor, borderRadius, borderThick, alignment, titleFontSize, titleBorder, content} = attributes;
+	const { titleIcon, 
+		titleIconAnimation, 
+		border, 
+		borderColor, 
+		borderRadius,
+		borderThick, 
+		alignment, 
+		titleFontSize, 
+		titleBorder, 
+		content, 
+		className, 
+		borderThickTitle } = attributes;
 
 	const changeAlignment = newAlignment => {
 		setAttributes( { alignment: newAlignment === undefined ? 'center' : newAlignment } );
@@ -51,15 +62,6 @@ export default function Edit({ attributes, setAttributes }) {
 	}, [titleIcon]);
 
 
-
-
-	/*
-	const units = [
-		{ value: 'px', label: 'px', default: 0 },
-		{ value: 'em', label: 'em', default: 0 },
-		{ value: 'rem', label: 'rem', default: 0 }
-	];*/
-
 	const colors = [
 		{ name: __('Black'), color: '#000' },
 		{ name: __('Dark Grey'), color: '#333' },
@@ -77,9 +79,21 @@ export default function Edit({ attributes, setAttributes }) {
 		{ name: __('extra large'), slug: 'extra-large', size: 26 }
 	];
 
+	const wrapperStyles = {
+		borderRadius, 
+		borderColor, 
+		borderWidth: border === true ? `${borderThick}px` : '0px',
+	}
+
+	const titleStyles = {
+		borderColor, 
+		flexDirection: titleIcon, 
+		borderBottomWidth: `${borderThickTitle}px`,
+	}
+
 	return (
-		<div style={ { borderRadius, borderColor, borderWidth: border === true ? `${borderThick}px` : '1px' } } className="devfle-expansion-panel">
-			<div style={ { borderColor, flexDirection: titleIcon } } className={ `devfle-expansion-panel__title devfle-expansion-panel__title--border-${titleBorder}` }>
+		<div style={ { ...wrapperStyles } } className={`${className} devfle-expansion-panel`}>
+			<div style={ { ...titleStyles } } className={ `devfle-expansion-panel__title devfle-expansion-panel__title--border-${titleBorder}` }>
 				{
 					<BlockControls>
 						<AlignmentToolbar value={ alignment } onChange={ changeAlignment } />
@@ -90,9 +104,9 @@ export default function Edit({ attributes, setAttributes }) {
 						<PanelBody initialOpen={ false } title={ __('Title Settings') }>
 							<FontSizePicker value={ titleFontSize } onChange={ titleFontSize => setAttributes({titleFontSize}) } fontSizes={ fontSizes } fallbackFontSize={ 16 }></FontSizePicker>
 							<RadioGroup className="devfle-radio-group" label={ __('Icon Position') } checked={ titleIcon } onChange={ titleIcon => setAttributes({ titleIcon }) }>
-								<Radio value="row">left</Radio>
-								<Radio value="row-reverse">right</Radio>
-								<Radio value="none">none</Radio>
+								<Radio value="row">{ __('left') }</Radio>
+								<Radio value="row-reverse">{ __('right') }</Radio>
+								<Radio value="none">{ __('none') }</Radio>
 							</RadioGroup>
 							<ToggleControl onChange={ setIconAnimation } checked={ titleIconAnimation } label={ __('Icon Animation') } ></ToggleControl>
 						</PanelBody>
@@ -101,17 +115,12 @@ export default function Edit({ attributes, setAttributes }) {
 							<ToggleControl checked={ titleBorder } label={ __('Display Title Border') } onChange={ titleBorder => setAttributes({ titleBorder }) } ></ToggleControl>
 							<RangeControl value={ borderRadius } onChange={ borderRadius => setAttributes({ borderRadius }) } min={ 0 } max={ 60 }  label={ __('Border Radius (px)') }></RangeControl>
 							<RangeControl value={ borderThick } onChange={ borderThick => setAttributes({ borderThick }) } min={ 1 } max={ 20 }  label={ __('Border Thickness (px)') }></RangeControl>
+							<RangeControl value={ borderThickTitle } onChange={ borderThickTitle => setAttributes({ borderThickTitle }) } min={ 1 } max={ 20 }  label={ __('Title Border Thickness (px)') }></RangeControl>
 							<ColorPalette value={ borderColor } colors={ colors } onChange={ borderColor => setAttributes({ borderColor }) }></ColorPalette>
 						</PanelBody>
-						{/*
-						<PanelBody  initialOpen={ false } title={ __('Block Spacing') }>
-							<UnitControl units={ units } label={ __('Block Margin') }></UnitControl>
-							<PanelRow>
-								<UnitControl className="unitcontrol--space-right" units={ units } label={ __('Title Padding') }></UnitControl>
-								<UnitControl className="unitcontrol--space-left" units={ units } label={ __('Content Padding') }></UnitControl>
-							</PanelRow>
+						<PanelBody initialOpen={false} title={ __('Inner Spacing (Soon)') }>
+
 						</PanelBody>
-						*/}
 					</InspectorControls>
 				}
 				<div ref={iconRef} className={ `devfle-expansion-panel__icon devfle-expansion-panel__icon--animation-${titleIconAnimation}` }></div>

@@ -16,11 +16,32 @@ import { RichText, InnerBlocks } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save({ attributes }) {
-	const { titleIcon, titleIconAnimation, border, borderColor, borderRadius, borderThick, alignment, titleFontSize, titleBorder, content} = attributes;
+	const { titleIcon, 
+		titleIconAnimation, 
+		border, 
+		borderColor, 
+		borderRadius, 
+		borderThick, 
+		alignment, 
+		titleFontSize, 
+		titleBorder, 
+		content, 
+		borderThickTitle } = attributes;
+
+		const wrapperStyles = {
+			borderRadius, 
+			borderColor, 
+			borderWidth: border === true ? `${borderThick}px` : '0px',
+		}
+	
+		const titleStyles = {
+			borderColor, 
+			borderBottomWidth: `${borderThickTitle}px`,
+		}
 
 	return (
-		<div style={ { borderRadius, borderColor, borderWidth: border === true ? `${borderThick}px` : '1px' } } className="devfle-expansion-panel">
-			<div style={ { borderColor } } className={`devfle-expansion-panel__title devfle-expansion-panel__title--border-${titleBorder} devfle-expansion-panel--icon-${titleIcon}`}>
+		<div style={ { ...wrapperStyles } } className="devfle-expansion-panel">
+			<div style={ { ...titleStyles } } className={`devfle-expansion-panel__title devfle-expansion-panel__title--border-${titleBorder} devfle-expansion-panel--icon-${titleIcon}`}>
 				<div className={ `devfle-expansion-panel__icon devfle-expansion-panel__icon--animation-${titleIconAnimation}` }></div>
 				<RichText.Content style={ { fontSize: titleFontSize } } className={ `devfle-expansion-panel--${ alignment }` } tagName="p" value={content} />
 			</div>

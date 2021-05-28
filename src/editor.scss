@@ -1,7 +1,5 @@
 /**
  * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
  */
 
 .devfle-expansion-panel {
@@ -9,7 +7,7 @@
 		border-bottom: 1px solid;
 
 		&--border-false {
-			border-bottom: none;
+			border-bottom: 0px !important;
 		}
 		
 	  &:hover {

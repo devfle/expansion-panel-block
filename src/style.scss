@@ -1,8 +1,6 @@
 /**
  * The following styles get applied both on the front of your site
  * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
  */
 
  .devfle-expansion-panel {
@@ -68,11 +66,25 @@
 	}
 
 	&--open {
+		&.is-style-expansion-panel {
+			&--dashed {
+			  .devfle-expansion-panel__title {
+				  border-bottom-style: dashed !important;
+			  }
+			}
+	  
+			&--dotted {
+			  .devfle-expansion-panel__title {
+				  border-bottom-style: dotted !important;
+			  }
+			}
+		}
+
 		.devfle-expansion-panel__title {
 			border-bottom: 1px solid #d0d0d0;
 
 			&--border-false {
-				border-bottom: none;
+				border-bottom: 0px !important;
 			}
 		}
 
@@ -109,11 +121,11 @@
   }
 
   .is-style-expansion-panel {
-	  &-dashed {
+	  &--dashed {
 		border-style: dashed !important;
 	  }
 
-	  &-dotted {
+	  &--dotted {
 		border-style: dotted !important;
 	  }
   }

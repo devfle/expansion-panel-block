@@ -71,6 +71,12 @@ registerBlockType('create-block/expansion-panel', {
 		},
 	},
 
+	example: {
+		attributes: {
+			content: 'Hello World',
+		},
+	},
+
 	keywords: [
 		__('expansion'),
 		__('panel'),
@@ -120,6 +126,10 @@ registerBlockType('create-block/expansion-panel', {
 		borderThick: {
 			type: 'number',
 			default: 1,
+		},
+		borderThickTitle: {
+			type: 'number',
+			default: 1,
 		}
 	},
 
@@ -134,11 +144,11 @@ registerBlockType('create-block/expansion-panel', {
 	save,
 });
 
-/*const blockStyles = ['dashed', 'dotted'];
+const blockStyles = ['dashed', 'dotted'];
 
 for (const blockStyle of blockStyles) {
 	wp.blocks.registerBlockStyle( 'create-block/expansion-panel', {
 		name: `expansion-panel--${blockStyle}`,
 		label: __(`${blockStyle} Border`),
 	});	
-}*/
+}
