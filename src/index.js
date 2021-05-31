@@ -32,12 +32,12 @@ import save from './save';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType('create-block/expansion-panel', {
+registerBlockType( 'create-block/expansion-panel', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
 	 */
-	title: __('Expansion Panel', 'expansion-panel'),
+	title: __( 'Expansion Panel', 'expansion-panel' ),
 
 	/**
 	 * This is a short description for your block, can be translated with `i18n` functions.
@@ -78,11 +78,11 @@ registerBlockType('create-block/expansion-panel', {
 	},
 
 	keywords: [
-		__('expansion'),
-		__('panel'),
-		__('spoiler'),
-		__('hide'),
-		__('show'),
+		__( 'expansion' ),
+		__( 'panel' ),
+		__( 'spoiler' ),
+		__( 'hide' ),
+		__( 'show' ),
 	],
 
 	attributes: {
@@ -93,7 +93,7 @@ registerBlockType('create-block/expansion-panel', {
 		},
 		alignment: {
 			type: 'string',
-			default: 'center'
+			default: 'center',
 		},
 		border: {
 			type: 'boolean',
@@ -116,7 +116,7 @@ registerBlockType('create-block/expansion-panel', {
 			default: 'left',
 		},
 		titleIconAnimation: {
-			type: "boolean",
+			type: 'boolean',
 			default: true,
 		},
 		titleBorder: {
@@ -130,7 +130,11 @@ registerBlockType('create-block/expansion-panel', {
 		borderThickTitle: {
 			type: 'number',
 			default: 1,
-		}
+		},
+		textColor: {
+			type: 'string',
+			default: '#333',
+		},
 	},
 
 	/**
@@ -142,13 +146,13 @@ registerBlockType('create-block/expansion-panel', {
 	 * @see ./save.js
 	 */
 	save,
-});
+} );
 
-const blockStyles = ['dashed', 'dotted'];
+const blockStyles = [ 'dashed', 'dotted' ];
 
-for (const blockStyle of blockStyles) {
+for ( const blockStyle of blockStyles ) {
 	wp.blocks.registerBlockStyle( 'create-block/expansion-panel', {
-		name: `expansion-panel--${blockStyle}`,
-		label: __(`${blockStyle} Border`),
-	});	
+		name: `expansion-panel--${ blockStyle }`,
+		label: `${ blockStyle } Border`,
+	} );
 }

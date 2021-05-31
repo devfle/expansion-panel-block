@@ -1,5 +1,6 @@
 /**
  * The following styles get applied inside the editor only.
+ *  We need to use !important in some places, because the editor is saving a lot of styles inline.
  */
 
 .devfle-expansion-panel {
@@ -21,6 +22,20 @@
 	  visibility: visible;
 	  opacity: 1;
 	  max-height: 100%;
+	}
+
+	&.is-style-expansion-panel {
+		&--dashed {
+		  .devfle-expansion-panel__title {
+			  border-bottom-style: dashed !important;
+		  }
+		}
+  
+		&--dotted {
+		  .devfle-expansion-panel__title {
+			  border-bottom-style: dotted !important;
+		  }
+		}
 	}
 }
 
