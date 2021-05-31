@@ -32,7 +32,7 @@ import save from './save';
  *
  * @see https://developer.wordpress.org/block-editor/developers/block-api/#registering-a-block
  */
-registerBlockType( 'create-block/expansion-panel', {
+registerBlockType( 'devfle/expansion-panel', {
 	/**
 	 * This is the display title for your block, which can be translated with `i18n` functions.
 	 * The block inserter will show this name.
@@ -151,7 +151,7 @@ registerBlockType( 'create-block/expansion-panel', {
 const blockStyles = [ 'dashed', 'dotted' ];
 
 for ( const blockStyle of blockStyles ) {
-	wp.blocks.registerBlockStyle( 'create-block/expansion-panel', {
+	wp.blocks.registerBlockStyle( 'devfle/expansion-panel', {
 		name: `expansion-panel--${ blockStyle }`,
 		label: `${ blockStyle } Border`,
 	} );

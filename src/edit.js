@@ -75,7 +75,7 @@ export default function Edit( { attributes, setAttributes } ) {
 		if ( titleIcon === 'none' ) {
 			iconRef.current.style = 'display: none';
 		} else {
-			iconRef.current.style = 'display: block';
+			iconRef.current.style = 'display: flex';
 		}
 	}, [ titleIcon ] );
 
