@@ -17,7 +17,7 @@
  *
  * @see https://developer.wordpress.org/block-editor/tutorials/block-tutorial/applying-styles-with-stylesheets/
  */
-function create_block_expansion_panel_block_init() {
+function devfle_expansion_panel_block_init() {
 	$dir = dirname( __FILE__ );
 
 	$script_asset_path = "$dir/build/index.asset.php";
@@ -58,7 +58,7 @@ function create_block_expansion_panel_block_init() {
 		'style'         => 'devfle-expansion-panel-block',
 	) );
 }
-add_action( 'init', 'create_block_expansion_panel_block_init' );
+add_action( 'init', 'devfle_expansion_panel_block_init' );
 
 
 add_action('wp_enqueue_scripts', function() {
