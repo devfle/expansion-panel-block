@@ -143,10 +143,9 @@ export default function Edit( { attributes, setAttributes } ) {
 							></FontSizePicker>
 							<BaseControl className="devfle-basecontrol" label={ __('Icon Position') }>
 							<RadioGroup
-								defaultChecked="left"
 								className="devfle-radio-group"
 								label={ __( 'Icon Position' ) }
-								checked={ titleIcon }
+								checked={ titleIcon === 'left' ? 'row' : titleIcon }
 								onChange={ ( titleIcon ) =>
 									setAttributes( { titleIcon } )
 								}
