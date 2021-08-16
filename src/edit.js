@@ -17,6 +17,7 @@ import {
 	RangeControl,
 	ColorPalette,
 	FontSizePicker,
+	BaseControl,
 	__experimentalRadioGroup as RadioGroup,
 	__experimentalRadio as Radio,
 } from '@wordpress/components';
@@ -140,7 +141,9 @@ export default function Edit( { attributes, setAttributes } ) {
 								fontSizes={ fontSizes }
 								fallbackFontSize={ 16 }
 							></FontSizePicker>
+							<BaseControl className="devfle-basecontrol" label={ __('Icon Position') }>
 							<RadioGroup
+								defaultChecked="left"
 								className="devfle-radio-group"
 								label={ __( 'Icon Position' ) }
 								checked={ titleIcon }
@@ -154,11 +157,8 @@ export default function Edit( { attributes, setAttributes } ) {
 								</Radio>
 								<Radio value="none">{ __( 'none' ) }</Radio>
 							</RadioGroup>
-							<ToggleControl
-								onChange={ setIconAnimation }
-								checked={ titleIconAnimation }
-								label={ __( 'Icon Animation' ) }
-							></ToggleControl>
+							</BaseControl>
+							<BaseControl className="devfle-basecontrol" label={ __('Header Text Color') }>
 							<ColorPalette
 								value={ textColor }
 								colors={ colors }
@@ -166,6 +166,12 @@ export default function Edit( { attributes, setAttributes } ) {
 									setAttributes( { textColor } )
 								}
 							></ColorPalette>
+							</BaseControl>
+							<ToggleControl
+								onChange={ setIconAnimation }
+								checked={ titleIconAnimation }
+								label={ __( 'Icon Animation' ) }
+							></ToggleControl>
 						</PanelBody>
 						<PanelBody
 							initialOpen={ false }
@@ -212,13 +218,15 @@ export default function Edit( { attributes, setAttributes } ) {
 								max={ 20 }
 								label={ __( 'Title Border Thickness (px)' ) }
 							></RangeControl>
-							<ColorPalette
-								value={ borderColor }
-								colors={ colors }
-								onChange={ ( borderColor ) =>
-									setAttributes( { borderColor } )
-								}
-							></ColorPalette>
+							<BaseControl className="devfle-basecontrol" label={ __('Border Color') }>
+								<ColorPalette
+									value={ borderColor }
+									colors={ colors }
+									onChange={ ( borderColor ) =>
+										setAttributes( { borderColor } )
+									}
+								></ColorPalette>
+							</BaseControl>
 						</PanelBody>
 						<PanelBody
 							initialOpen={ false }

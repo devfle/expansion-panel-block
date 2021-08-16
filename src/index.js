@@ -67,7 +67,12 @@ registerBlockType( 'devfle/expansion-panel', {
 		// Removes support for an HTML mode.
 		html: false,
 		spacing: {
+			margin: true,
 			padding: true,
+		},
+		color: {
+			link: false,
+			text: false,
 		},
 	},
 

@@ -29,16 +29,16 @@ function devfle_expansion_panel_block_init() {
 	$index_js     = 'build/index.js';
 	$script_asset = require( $script_asset_path );
 	wp_register_script(
-		'devfle-expansion-panel-block-editor',
+		'devfle-expansion-panel-block-editor-script',
 		plugins_url( $index_js, __FILE__ ),
 		$script_asset['dependencies'],
 		$script_asset['version']
 	);
-	wp_set_script_translations( 'devfle-expansion-panel-block-editor', 'expansion-panel' );
+	wp_set_script_translations( 'devfle-expansion-panel-block-editor-script', 'expansion-panel' );
 
 	$editor_css = 'build/index.css';
 	wp_register_style(
-		'devfle-expansion-panel-block-editor',
+		'devfle-expansion-panel-block-editor-style',
 		plugins_url( $editor_css, __FILE__ ),
 		array(),
 		filemtime( "$dir/$editor_css" )
@@ -53,8 +53,8 @@ function devfle_expansion_panel_block_init() {
 	);
 
 	register_block_type( 'devfle/expansion-panel', array(
-		'editor_script' => 'devfle-expansion-panel-block-editor',
-		'editor_style'  => 'devfle-expansion-panel-block-editor',
+		'editor_script' => 'devfle-expansion-panel-block-editor-script',
+		'editor_style'  => 'devfle-expansion-panel-block-editor-style',
 		'style'         => 'devfle-expansion-panel-block',
 	) );
 }
