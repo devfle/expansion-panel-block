@@ -63,7 +63,7 @@ add_action( 'init', 'devfle_expansion_panel_block_init' );
 
 add_action('wp_enqueue_scripts', function() {
 	$SCRIPT_NAME = 'ep-frontend';
-	$SCRIPT_PATH = 'build/frontend.js';
+	$SCRIPT_PATH = 'build/ep-frontend.js';
 
 	wp_register_script($SCRIPT_NAME, plugins_url( $SCRIPT_PATH, __FILE__ ), [], true, true );
 	wp_enqueue_script($SCRIPT_NAME);
